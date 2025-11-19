@@ -1,0 +1,14 @@
+# Environment Variables Template
+
+# YouTube API Configuration
+NEXT_PUBLIC_YOUTUBE_API_KEY=your_youtube_api_key_here
+NEXT_PUBLIC_YOUTUBE_CHANNEL_ID=your_youtube_channel_id_here
+
+# Twitch API Configuration
+NEXT_PUBLIC_TWITCH_CLIENT_ID=your_twitch_client_id_here
+NEXT_PUBLIC_TWITCH_CLIENT_SECRET=your_twitch_client_secret_here
+NEXT_PUBLIC_TWITCH_USERNAME=your_twitch_username_here
+
+# Streamer Information
+NEXT_PUBLIC_STREAMER_NAME=Your Name
+NEXT_PUBLIC_STREAMER_BIO=Your gaming bio here

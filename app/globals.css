@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;500;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #0d0221;
+  --foreground: #f0f0f0;
+  --gray-900: #1a0933;
+  --gray-800: #2d1b4e;
+  --gray-700: #3e2a5c;
+  --accent-red: #ff006e;
+  --accent-purple: #8338ec;
+  --accent-cyan: #00f5ff;
+  --accent-green: #06ffa5;
+  --glow-red: rgba(255, 0, 110, 0.6);
+  --glow-purple: rgba(131, 56, 236, 0.6);
+  --glow-cyan: rgba(0, 245, 255, 0.6);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gray-900: var(--gray-900);
+  --color-gray-800: var(--gray-800);
+  --color-gray-700: var(--gray-700);
+  --color-accent-red: var(--accent-red);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-green: var(--accent-green);
+
+  --font-gaming: 'Press Start 2P', cursive;
+  --font-body: 'Roboto', sans-serif;
+
+  /* Custom animations */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes glow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 5px var(--glow-red);
+    }
+
+    50% {
+      box-shadow: 0 0 20px var(--glow-red);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-red);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-purple);
+}
