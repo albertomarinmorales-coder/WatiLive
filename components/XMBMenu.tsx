@@ -40,10 +40,11 @@ export default function XMBMenu({ activeTab, onTabChange }: XMBMenuProps) {
     }, [activeTab, onTabChange]);
 
     return (
-        <header className="fixed top-0 left-0 w-full z-40 px-4 pt-4 pb-3 overflow-visible">
+        <header className="fixed top-0 left-0 w-full z-40 px-4 py-4 overflow-visible">
+            <div className="absolute inset-0 bg-[var(--background)]/95 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.45)]" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col gap-4 md:items-center">
+            <div className="relative z-10 flex flex-col items-center justify-center gap-4">
                 <div className="w-full flex items-center justify-center">
                     <div
                         ref={containerRef}
@@ -71,12 +72,6 @@ export default function XMBMenu({ activeTab, onTabChange }: XMBMenuProps) {
                                         }`}>
                                         {tab.label}
                                     </span>
-                                    {isActive && (
-                                        <motion.div
-                                            layoutId="activeIndicator"
-                                            className="w-1 h-1 bg-white rounded-full mt-1 shadow-[0_0_10px_white]"
-                                        />
-                                    )}
                                 </motion.button>
                             );
                         })}
@@ -84,11 +79,11 @@ export default function XMBMenu({ activeTab, onTabChange }: XMBMenuProps) {
 
                 </div>
 
-                <div className="flex justify-center md:justify-end md:absolute md:right-4 md:top-4 md:translate-y-1">
+                <div className="flex justify-center md:justify-end md:absolute md:right-6 md:top-6">
                     <Header />
                 </div>
 
-                <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
+                <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--accent-cyan)]/60 to-transparent shadow-[0_0_15px_var(--accent-cyan)]" />
             </div>
         </header>
     );

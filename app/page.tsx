@@ -15,17 +15,17 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
 
   return (
-    <main className="h-screen w-screen overflow-hidden bg-background relative text-white font-sans selection:bg-accent-red selection:text-white">
+    <main className="min-h-screen w-screen overflow-x-hidden bg-background relative text-white font-sans selection:bg-accent-red selection:text-white">
       {/* Animated Background */}
       <div className="fixed inset-0 gamer-grid-bg opacity-20 pointer-events-none z-0" />
-      <div className="fixed inset-0 scanlines z-50 pointer-events-none opacity-30" />
+      <div className="fixed inset-0 scanlines z-10 pointer-events-none opacity-30" />
       <FloatingItems />
 
       {/* XMB Navigation (Horizontal) */}
       <XMBMenu activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* Vertical Content Area */}
-      <div className="absolute top-64 left-0 w-full h-[calc(100vh-256px)] overflow-y-auto no-scrollbar z-30 px-4 md:px-20 pb-20">
+      <div className="relative z-30 mt-64 px-4 md:px-20 pb-40">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
