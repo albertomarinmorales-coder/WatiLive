@@ -45,7 +45,7 @@ export default function XMBMenu({ activeTab, onTabChange }: XMBMenuProps) {
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center justify-center gap-4">
-                <div className="w-full flex items-center justify-center">
+                <div className="relative w-full flex flex-col items-center justify-center gap-4 md:flex-row md:min-h-[96px]">
                     <div
                         ref={containerRef}
                         className="flex flex-wrap items-center justify-center gap-6 md:gap-12"
@@ -56,10 +56,10 @@ export default function XMBMenu({ activeTab, onTabChange }: XMBMenuProps) {
                                 <motion.button
                                     key={tab.id}
                                     onClick={() => onTabChange(tab.id)}
-                                    className={`flex flex-col items-center gap-2 transition-all duration-300 outline-none group ${isActive ? 'text-white scale-110' : 'text-gray-500 hover:text-gray-300 scale-90'
+                                    className={`group relative flex flex-col items-center outline-none ${isActive ? 'text-white' : 'text-gray-500 hover:text-gray-300'
                                         }`}
-                                    whileHover={{ scale: isActive ? 1.15 : 1 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.98 }}
                                 >
                                     <div className={`p-4 rounded-2xl transition-all duration-300 ${isActive
                                             ? 'bg-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.2)] border border-white/20'
@@ -68,19 +68,16 @@ export default function XMBMenu({ activeTab, onTabChange }: XMBMenuProps) {
                                         <tab.icon className={`text-3xl md:text-4xl ${isActive ? 'drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]' : ''
                                             }`} />
                                     </div>
-                                    <span className={`text-sm font-bold tracking-wider uppercase ${isActive ? 'opacity-100 text-shadow-glow' : 'opacity-0 group-hover:opacity-50'
-                                        }`}>
+                                    <div className="pointer-events-none absolute left-1/2 top-full -translate-x-1/2 mt-3 px-3 py-1 rounded-md bg-black/85 border border-white/20 text-xs font-bold uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-[0_5px_15px_rgba(0,0,0,0.45)]">
                                         {tab.label}
-                                    </span>
+                                    </div>
                                 </motion.button>
                             );
                         })}
                     </div>
-
-                </div>
-
-                <div className="flex justify-center md:justify-end md:absolute md:right-6 md:top-6">
-                    <Header />
+                    <div className="flex justify-center w-full md:w-auto md:absolute md:right-10 md:top-1/2 md:-translate-y-1/2">
+                        <Header />
+                    </div>
                 </div>
 
                 <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--accent-cyan)]/60 to-transparent shadow-[0_0_15px_var(--accent-cyan)]" />
