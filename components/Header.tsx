@@ -1,56 +1,48 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Header() {
-    return (
-        <header
-            className="text-white p-4 shadow-lg relative overflow-hidden bg-cover h-[300px]"
-            style={{
-                backgroundImage: 'url(/images/header.jpg)',
-                backgroundPosition: 'center calc(100% + 50px)'
-            }}
-        >
-            {/* Subtle dark overlay for text readability */}
-            <div className="absolute inset-0 bg-black/30" />
+    const [time, setTime] = useState(new Date());
 
-            {/* Content */}
-            <div className="container mx-auto relative z-10 h-full flex items-center justify-center py-2">
-                {/* Avatar and Name centered */}
-                <motion.div
-                    className="flex flex-col items-center gap-4 text-center"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <motion.div
-                        className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-accent-red shadow-2xl"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        animate={{ y: [0, -6, 0] }}
-                        transition={{
-                            y: { repeat: Infinity, duration: 3, ease: "easeInOut" }
-                        }}
-                    >
-                        <img
-                            src="/images/avatarTR.png"
-                            alt="WatiLive Avatar"
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                                (e.target as HTMLImageElement).src = 'https://via.placeholder.com/120/ef4444/ffffff?text=WATI';
-                            }}
-                        />
-                    </motion.div>
-                    <h1
-                        className="text-3xl md:text-4xl font-bold drop-shadow-2xl"
-                        style={{
-                            fontFamily: 'var(--font-gaming)',
-                            textShadow: '3px 3px 6px rgba(0,0,0,0.9)'
-                        }}
-                    >
-                        {process.env.NEXT_PUBLIC_STREAMER_NAME || 'WatiLive'}
-                    </h1>
-                </motion.div>
+    useEffect(() => {
+        const timer = setInterval(() => setTime(new Date()), 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    return (
+        <motion.div
+            className="flex items-center gap-4 bg-black/40 backdrop-blur-md px-6 py-2 rounded-full border border-white/10 shadow-lg"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+        >
+            <div className="flex flex-col items-end">
+                <span className="text-xl font-bold font-mono text-white leading-none">
+                    {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </span>
+                <span className="text-xs text-gray-400 uppercase tracking-widest">
+                    {time.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' })}
+                </span>
             </div>
-        </header>
+
+            <div className="w-[1px] h-8 bg-white/20" />
+
+            <div className="flex items-center gap-3">
+                <span className="text-sm font-bold text-accent-cyan hidden md:block">
+                    {process.env.NEXT_PUBLIC_STREAMER_NAME || 'WatiLive'}
+                </span>
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-accent-cyan shadow-[0_0_10px_var(--accent-cyan)]">
+                    <img
+                        src="/images/avatarTR.png"
+                        alt="Avatar"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/40/00f5ff/000000?text=W';
+                        }}
+                    />
+                </div>
+            </div>
+        </motion.div>
     );
 }

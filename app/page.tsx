@@ -1,71 +1,59 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import TabContent from '@/components/TabContent';
 import AboutSection from '@/components/AboutSection';
 import YouTubeSection from '@/components/YouTubeSection';
 import TwitchSection from '@/components/TwitchSection';
 import ClipsSection from '@/components/ClipsSection';
 import FloatingItems from '@/components/FloatingItems';
+import XMBMenu from '@/components/XMBMenu';
 import { TabType } from '@/types';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
 
   return (
-    <main className="min-h-screen bg-background relative flex flex-col">
-      {/* Floating Background Decorations */}
+    <main className="h-screen w-screen overflow-hidden bg-background relative text-white font-sans selection:bg-accent-red selection:text-white">
+      {/* Animated Background */}
+      <div className="fixed inset-0 gamer-grid-bg opacity-20 pointer-events-none z-0" />
+      <div className="fixed inset-0 scanlines z-50 pointer-events-none opacity-30" />
       <FloatingItems />
 
-      {/* Main Content */}
-      <div className="relative z-10 flex-1 flex flex-col">
-        {/* Header */}
+      {/* System Status Bar (Header) */}
+      <div className="absolute top-0 right-0 z-50 p-4">
         <Header />
+      </div>
 
-        {/* Navigation Tabs - Below Header */}
-        <nav className="py-4 mt-6 sticky top-0 z-40">
-          <div className="container mx-auto px-4 flex gap-2 md:gap-3 flex-wrap justify-center">
-            {(['about', 'youtube', 'twitch', 'clips'] as const).map((tab) => (
-              <motion.button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2 md:px-6 md:py-3 rounded-lg font-semibold transition-all text-sm md:text-base ${activeTab === tab
-                  ? 'bg-accent-red text-white shadow-2xl scale-105'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                  }`}
-                whileHover={{ scale: 1.08, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </motion.button>
-            ))}
-          </div>
-        </nav>
+      {/* XMB Navigation (Horizontal) */}
+      <XMBMenu activeTab={activeTab} onTabChange={setActiveTab} />
 
-        {/* Content Area */}
-        <div className="container mx-auto px-4 py-8 flex-1">
-          <TabContent isActive={activeTab === 'about'}>
-            <AboutSection />
-          </TabContent>
+      {/* Vertical Content Area */}
+      <div className="absolute top-64 left-0 w-full h-[calc(100vh-256px)] overflow-y-auto no-scrollbar z-30 px-4 md:px-20 pb-20">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="max-w-7xl mx-auto"
+          >
+            {activeTab === 'about' && <AboutSection />}
+            {activeTab === 'youtube' && <YouTubeSection />}
+            {activeTab === 'twitch' && <TwitchSection />}
+            {activeTab === 'clips' && <ClipsSection />}
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
-          <TabContent isActive={activeTab === 'youtube'}>
-            <YouTubeSection />
-          </TabContent>
-
-          <TabContent isActive={activeTab === 'twitch'}>
-            <TwitchSection />
-          </TabContent>
-
-          <TabContent isActive={activeTab === 'clips'}>
-            <ClipsSection />
-          </TabContent>
+      {/* Footer - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 w-full z-40 pointer-events-none">
+        <div className="pointer-events-auto">
+          <Footer />
         </div>
-
-        {/* Footer */}
-        <Footer />
       </div>
     </main>
   );

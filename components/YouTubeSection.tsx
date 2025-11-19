@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaYoutube, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaYoutube } from 'react-icons/fa';
+import { ExternalLink } from 'lucide-react';
 import { YouTubeVideo } from '@/types';
 import { getRecentVideos } from '@/lib/youtube';
 
@@ -30,7 +31,7 @@ export default function YouTubeSection() {
     };
 
     return (
-        <div className="bg-gray-800 rounded-lg p-8 shadow-xl">
+        <div className="bg-gray-900/80 rounded-2xl p-8 shadow-xl border border-gray-800 backdrop-blur-sm hud-card">
             {/* Title */}
             <div className="flex items-center gap-3 mb-6">
                 <FaYoutube className="text-4xl text-red-600" />
@@ -52,30 +53,35 @@ export default function YouTubeSection() {
                             href={video.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group bg-gray-900 rounded-lg overflow-hidden shadow-lg cursor-pointer"
+                            className="group relative bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-800 hover:border-accent-red hud-card"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
+                            whileHover={{ scale: 1.02, y: -5 }}
                         >
                             {/* Thumbnail */}
-                            <div className="relative overflow-hidden aspect-video">
+                            <div className="relative aspect-video overflow-hidden">
                                 <img
                                     src={video.thumbnail}
                                     alt={video.title}
-                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                                    <FaExternalLinkAlt className="text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <FaYoutube className="text-5xl text-red-600 drop-shadow-lg" />
                                 </div>
                             </div>
 
-                            {/* Info */}
+                            {/* Content */}
                             <div className="p-4">
-                                <h3 className="font-semibold text-white mb-2 line-clamp-2 group-hover:text-accent-red transition-colors">
+                                <h3 className="font-bold text-white line-clamp-2 mb-2 group-hover:text-accent-red transition-colors">
                                     {video.title}
                                 </h3>
-                                <p className="text-sm text-gray-400">{formatDate(video.publishedAt)}</p>
+                                <div className="flex justify-between items-center text-xs text-gray-400">
+                                    <span>{formatDate(video.publishedAt)}</span>
+                                    <span className="flex items-center gap-1 group-hover:text-white transition-colors">
+                                        Watch <ExternalLink size={12} />
+                                    </span>
+                                </div>
                             </div>
                         </motion.a>
                     ))}

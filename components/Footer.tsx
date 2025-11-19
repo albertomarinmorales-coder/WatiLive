@@ -3,48 +3,50 @@
 import { FaTwitch, FaYoutube, FaDiscord, FaTwitter } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-const socialLinks = [
-    { icon: FaTwitch, url: 'https://twitch.tv', color: '#9146FF', label: 'Twitch' },
-    { icon: FaYoutube, url: 'https://youtube.com', color: '#FF0000', label: 'YouTube' },
-    { icon: FaDiscord, url: 'https://discord.com', color: '#5865F2', label: 'Discord' },
-    { icon: FaTwitter, url: 'https://twitter.com', color: '#1DA1F2', label: 'Twitter' },
-];
-
 export default function Footer() {
-    return (
-        <footer className="bg-gray-900 text-white py-4 mt-8">
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col items-center gap-3">
-                    {/* Social Links */}
-                    <div className="flex gap-4">
-                        {socialLinks.map((social) => (
-                            <motion.a
-                                key={social.label}
-                                href={social.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-2xl transition-colors"
-                                style={{ color: '#9ca3af' }}
-                                whileHover={{
-                                    scale: 1.2,
-                                    color: social.color,
-                                    rotate: [0, -10, 10, 0]
-                                }}
-                                whileTap={{ scale: 0.9 }}
-                                aria-label={social.label}
-                            >
-                                <social.icon />
-                            </motion.a>
-                        ))}
-                    </div>
+    const currentYear = new Date().getFullYear();
 
-                    {/* Copyright */}
-                    <div className="text-center text-gray-400 text-xs">
-                        <p>© {new Date().getFullYear()} {process.env.NEXT_PUBLIC_STREAMER_NAME || 'WatiLive'}. All rights reserved.</p>
-                        <p className="mt-1">Desarrollado por KlicaDev</p>
-                    </div>
+    const socialLinks = [
+        { icon: FaTwitch, href: '#', color: 'hover:text-purple-500', label: 'Twitch' },
+        { icon: FaYoutube, href: '#', color: 'hover:text-red-500', label: 'YouTube' },
+        { icon: FaDiscord, href: '#', color: 'hover:text-indigo-500', label: 'Discord' },
+        { icon: FaTwitter, href: '#', color: 'hover:text-blue-400', label: 'Twitter' },
+    ];
+
+    return (
+        <motion.footer
+            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
+        >
+            <div className="glass-panel px-6 py-3 rounded-full flex items-center gap-6 shadow-2xl border border-white/10 bg-black/40 backdrop-blur-md">
+                {/* Social Icons */}
+                <div className="flex items-center gap-4">
+                    {socialLinks.map((social, index) => (
+                        <motion.a
+                            key={index}
+                            href={social.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`text-gray-400 transition-colors duration-300 ${social.color}`}
+                            whileHover={{ scale: 1.2, rotate: 5 }}
+                            whileTap={{ scale: 0.9 }}
+                            aria-label={social.label}
+                        >
+                            <social.icon size={20} />
+                        </motion.a>
+                    ))}
+                </div>
+
+                {/* Divider */}
+                <div className="w-px h-4 bg-gray-600/50"></div>
+
+                {/* Copyright */}
+                <div className="text-[10px] text-gray-500 font-medium tracking-wider uppercase">
+                    © {currentYear} WatiLive
                 </div>
             </div>
-        </footer>
+        </motion.footer>
     );
 }
