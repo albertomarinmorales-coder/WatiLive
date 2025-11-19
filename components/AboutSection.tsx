@@ -25,7 +25,7 @@ export default function AboutSection() {
             <div className="flex items-center gap-3 mb-6">
                 <FaGamepad className="text-4xl text-accent-red" />
                 <h2 className="text-3xl font-bold" style={{ fontFamily: 'var(--font-gaming)' }}>
-                    About Me
+                    Sobre mí
                 </h2>
             </div>
 
@@ -37,10 +37,10 @@ export default function AboutSection() {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 {[
-                    { label: 'Streams', value: '1.2K+', icon: FaTwitch, color: 'text-purple-400' },
-                    { label: 'Followers', value: '50K+', icon: FaUserFriends, color: 'text-blue-400' },
-                    { label: 'Hours', value: '5000+', icon: FaClock, color: 'text-green-400' },
-                    { label: 'Games', value: '100+', icon: FaTrophy, color: 'text-yellow-400' },
+                    { label: 'Transmisiones', value: '1.2K+', icon: FaTwitch, color: 'text-purple-400' },
+                    { label: 'Seguidores', value: '50K+', icon: FaUserFriends, color: 'text-blue-400' },
+                    { label: 'Horas', value: '5000+', icon: FaClock, color: 'text-green-400' },
+                    { label: 'Juegos', value: '100+', icon: FaTrophy, color: 'text-yellow-400' },
                 ].map((stat, index) => (
                     <motion.div
                         key={stat.label}
@@ -61,7 +61,7 @@ export default function AboutSection() {
 
             {/* Social Links */}
             <div>
-                <h3 className="text-xl font-semibold mb-4 text-accent-purple">Connect With Me</h3>
+                <h3 className="text-xl font-semibold mb-4 text-accent-purple">Conecta conmigo</h3>
                 <div className="flex gap-4 flex-wrap">
                     {socialIcons.map((social, index) => (
                         <motion.div

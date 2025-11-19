@@ -19,10 +19,10 @@ export default function Header() {
         >
             <div className="flex flex-col items-end">
                 <span className="text-xl font-bold font-mono text-white leading-none">
-                    {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {time.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
                 </span>
                 <span className="text-xs text-gray-400 uppercase tracking-widest">
-                    {time.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' })}
+                    {time.toLocaleDateString('es-ES', { weekday: 'short', month: 'short', day: 'numeric' })}
                 </span>
             </div>
 

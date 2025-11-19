@@ -11,7 +11,7 @@ async function getAccessToken(): Promise<string> {
     if (accessToken) return accessToken;
 
     if (!CLIENT_ID || !CLIENT_SECRET) {
-        throw new Error('Twitch API credentials not configured');
+        throw new Error('Credenciales de la API de Twitch no configuradas');
     }
 
     try {
@@ -30,14 +30,14 @@ async function getAccessToken(): Promise<string> {
         accessToken = response.data.access_token;
         return accessToken as string;
     } catch (error) {
-        console.error('Error getting Twitch access token:', error);
+        console.error('Error al obtener el token de acceso de Twitch:', error);
         throw error;
     }
 }
 
 export async function checkLiveStatus(): Promise<boolean> {
     if (!CLIENT_ID || !USERNAME) {
-        return false; // Mock: not live
+        return false; // Mock: no está en directo
     }
 
     try {
@@ -54,7 +54,7 @@ export async function checkLiveStatus(): Promise<boolean> {
 
         return response.data.data.length > 0;
     } catch (error) {
-        console.error('Error checking Twitch live status:', error);
+        console.error('Error al comprobar el estado en vivo de Twitch:', error);
         return false;
     }
 }
@@ -101,34 +101,34 @@ export async function getRecentStreams(maxResults: number = 3): Promise<TwitchSt
             isLive: false,
         }));
     } catch (error) {
-        console.error('Error fetching Twitch streams:', error);
+        console.error('Error al obtener las transmisiones de Twitch:', error);
         return getMockStreams();
     }
 }
 
-// Mock data for when API is not configured
+// Datos de ejemplo para cuando la API no está configurada
 function getMockStreams(): TwitchStream[] {
     return [
         {
             id: '1',
-            title: 'Chill Gaming Session - The Binding of Isaac',
-            thumbnail: 'https://via.placeholder.com/480x360/6441a5/ffffff?text=Stream+1',
+            title: 'Sesión relajada - The Binding of Isaac',
+            thumbnail: 'https://via.placeholder.com/480x360/6441a5/ffffff?text=Directo+1',
             viewerCount: 1234,
             startedAt: new Date(Date.now() - 3600000).toISOString(),
             isLive: false,
         },
         {
             id: '2',
-            title: 'Speedrun Practice - Going for WR!',
-            thumbnail: 'https://via.placeholder.com/480x360/6441a5/ffffff?text=Stream+2',
+            title: 'Práctica de speedrun - ¡Por el récord!',
+            thumbnail: 'https://via.placeholder.com/480x360/6441a5/ffffff?text=Directo+2',
             viewerCount: 2345,
             startedAt: new Date(Date.now() - 86400000).toISOString(),
             isLive: false,
         },
         {
             id: '3',
-            title: 'Community Game Night',
-            thumbnail: 'https://via.placeholder.com/480x360/6441a5/ffffff?text=Stream+3',
+            title: 'Noche de juegos con la comunidad',
+            thumbnail: 'https://via.placeholder.com/480x360/6441a5/ffffff?text=Directo+3',
             viewerCount: 3456,
             startedAt: new Date(Date.now() - 172800000).toISOString(),
             isLive: false,

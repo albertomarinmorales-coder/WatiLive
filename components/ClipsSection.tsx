@@ -6,43 +6,43 @@ import { FaGamepad, FaPlay } from 'react-icons/fa';
 const clips = [
     {
         id: 1,
-        title: 'Epic Boss Fight',
-        thumbnail: 'https://via.placeholder.com/400x225/111827/ef4444?text=Epic+Boss+Fight',
+        title: 'Combate épico contra el jefe',
+        thumbnail: 'https://via.placeholder.com/400x225/111827/ef4444?text=Clip+1',
         game: 'The Binding of Isaac',
         views: '1.2K'
     },
     {
         id: 2,
-        title: 'Insane Speedrun Moment',
-        thumbnail: 'https://via.placeholder.com/400x225/111827/a855f7?text=Speedrun+Moment',
+        title: 'Momento de speedrun insano',
+        thumbnail: 'https://via.placeholder.com/400x225/111827/a855f7?text=Clip+2',
         game: 'Celeste',
         views: '850'
     },
     {
         id: 3,
-        title: 'Clutch Victory',
-        thumbnail: 'https://via.placeholder.com/400x225/111827/10b981?text=Clutch+Victory',
+        title: 'Victoria en el último segundo',
+        thumbnail: 'https://via.placeholder.com/400x225/111827/10b981?text=Clip+3',
         game: 'Elden Ring',
         views: '2.5K'
     },
     {
         id: 4,
-        title: 'Funny Fail Compilation',
-        thumbnail: 'https://via.placeholder.com/400x225/111827/ef4444?text=Funny+Fails',
-        game: 'Various',
+        title: 'Compilación de fails divertidos',
+        thumbnail: 'https://via.placeholder.com/400x225/111827/ef4444?text=Clip+4',
+        game: 'Varios',
         views: '5K'
     },
     {
         id: 5,
-        title: 'World Record Attempt',
-        thumbnail: 'https://via.placeholder.com/400x225/111827/a855f7?text=WR+Attempt',
+        title: 'Intento de récord mundial',
+        thumbnail: 'https://via.placeholder.com/400x225/111827/a855f7?text=Clip+5',
         game: 'Super Mario 64',
         views: '10K'
     },
     {
         id: 6,
-        title: 'Community Challenge',
-        thumbnail: 'https://via.placeholder.com/400x225/111827/10b981?text=Community+Challenge',
+        title: 'Desafío con la comunidad',
+        thumbnail: 'https://via.placeholder.com/400x225/111827/10b981?text=Clip+6',
         game: 'Dark Souls 3',
         views: '3.1K'
     },
@@ -55,7 +55,7 @@ export default function ClipsSection() {
             <div className="flex items-center gap-3 mb-6">
                 <FaGamepad className="text-4xl text-accent-green" />
                 <h2 className="text-3xl font-bold" style={{ fontFamily: 'var(--font-gaming)' }}>
-                    Epic Clips & Moments
+                    Clips y momentos épicos
                 </h2>
             </div>
 
@@ -81,7 +81,7 @@ export default function ClipsSection() {
                                 <FaPlay className="text-5xl text-accent-green drop-shadow-lg fill-current" />
                             </div>
                             <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                                {clip.views} views
+                                {clip.views} visualizaciones
                             </div>
                         </div>
 
@@ -103,13 +103,13 @@ export default function ClipsSection() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
             >
-                <p className="text-gray-400 mb-4">Want to see more epic moments?</p>
+                <p className="text-gray-400 mb-4">¿Quieres ver más momentos épicos?</p>
                 <motion.button
                     className="bg-accent-purple hover:bg-purple-600 text-white font-bold py-3 px-8 rounded-lg transition-colors border border-accent-purple hover:border-white shadow-[0_0_10px_rgba(131,56,236,0.5)] hover:shadow-[0_0_20px_rgba(131,56,236,0.8)]"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    View All Clips
+                    Ver todos los clips
                 </motion.button>
             </motion.div>
         </div>

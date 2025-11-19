@@ -17,7 +17,7 @@ export default function YouTubeSection() {
                 const data = await getRecentVideos();
                 setVideos(data);
             } catch (error) {
-                console.error('Error loading videos:', error);
+                console.error('Error al cargar los videos:', error);
             } finally {
                 setLoading(false);
             }
@@ -27,7 +27,7 @@ export default function YouTubeSection() {
 
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        return date.toLocaleDateString('es-ES', { month: 'short', day: 'numeric', year: 'numeric' });
     };
 
     return (
@@ -36,14 +36,14 @@ export default function YouTubeSection() {
             <div className="flex items-center gap-3 mb-6">
                 <FaYoutube className="text-4xl text-red-600" />
                 <h2 className="text-3xl font-bold" style={{ fontFamily: 'var(--font-gaming)' }}>
-                    Latest Videos
+                    Últimos videos
                 </h2>
             </div>
 
             {loading ? (
                 <div className="text-center py-12">
                     <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-accent-red border-t-transparent"></div>
-                    <p className="mt-4 text-gray-400">Loading videos...</p>
+                    <p className="mt-4 text-gray-400">Cargando videos...</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -79,7 +79,7 @@ export default function YouTubeSection() {
                                 <div className="flex justify-between items-center text-xs text-gray-400">
                                     <span>{formatDate(video.publishedAt)}</span>
                                     <span className="flex items-center gap-1 group-hover:text-white transition-colors">
-                                        Watch <ExternalLink size={12} />
+                                        Ver <ExternalLink size={12} />
                                     </span>
                                 </div>
                             </div>

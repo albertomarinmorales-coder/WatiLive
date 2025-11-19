@@ -22,7 +22,7 @@ export default function TwitchSection() {
                 setIsLive(liveStatus);
                 setStreams(recentStreams);
             } catch (error) {
-                console.error('Error loading Twitch data:', error);
+                console.error('Error al cargar datos de Twitch:', error);
             } finally {
                 setLoading(false);
             }
@@ -32,7 +32,7 @@ export default function TwitchSection() {
 
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        return date.toLocaleDateString('es-ES', { month: 'short', day: 'numeric', year: 'numeric' });
     };
 
     return (
@@ -42,7 +42,7 @@ export default function TwitchSection() {
                 <div className="flex items-center gap-3">
                     <FaTwitch className="text-4xl text-purple-600" />
                     <h2 className="text-3xl font-bold" style={{ fontFamily: 'var(--font-gaming)' }}>
-                        Twitch Streams
+                        Directos de Twitch
                     </h2>
                 </div>
 
@@ -62,7 +62,7 @@ export default function TwitchSection() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
                         </span>
-                        <span className="font-bold text-white">LIVE NOW</span>
+                        <span className="font-bold text-white">EN DIRECTO</span>
                     </motion.div>
                 )}
             </div>
@@ -70,7 +70,7 @@ export default function TwitchSection() {
             {loading ? (
                 <div className="text-center py-12">
                     <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-purple-600 border-t-transparent"></div>
-                    <p className="mt-4 text-gray-400">Loading streams...</p>
+                    <p className="mt-4 text-gray-400">Cargando transmisiones...</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -94,10 +94,10 @@ export default function TwitchSection() {
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">
-                                    {stream.isLive ? 'LIVE' : 'VOD'}
+                                    {stream.isLive ? 'EN VIVO' : 'REPETICIÓN'}
                                 </div>
                                 <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
-                                    {stream.viewerCount.toLocaleString()} viewers
+                                    {stream.viewerCount.toLocaleString()} espectadores
                                 </div>
                             </div>
 
@@ -107,12 +107,12 @@ export default function TwitchSection() {
                                     {stream.title}
                                 </h3>
                                 <p className="text-xs text-gray-400 mb-3">
-                                    {stream.isLive ? 'Streaming Now' : 'Past Broadcast'}
+                                    {stream.isLive ? 'En directo ahora' : 'Transmisión pasada'}
                                 </p>
                                 <div className="flex justify-between items-center text-xs text-gray-500">
                                     <span>{formatDate(stream.startedAt)}</span>
                                     <span className="flex items-center gap-1 group-hover:text-white transition-colors">
-                                        Watch <ExternalLink size={12} />
+                                        Ver <ExternalLink size={12} />
                                     </span>
                                 </div>
                             </div>

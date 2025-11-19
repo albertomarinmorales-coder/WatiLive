@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AboutSection from '@/components/AboutSection';
 import YouTubeSection from '@/components/YouTubeSection';
@@ -21,11 +20,6 @@ export default function Home() {
       <div className="fixed inset-0 gamer-grid-bg opacity-20 pointer-events-none z-0" />
       <div className="fixed inset-0 scanlines z-50 pointer-events-none opacity-30" />
       <FloatingItems />
-
-      {/* System Status Bar (Header) */}
-      <div className="absolute top-0 right-0 z-50 p-4">
-        <Header />
-      </div>
 
       {/* XMB Navigation (Horizontal) */}
       <XMBMenu activeTab={activeTab} onTabChange={setActiveTab} />

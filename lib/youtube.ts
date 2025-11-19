@@ -6,7 +6,7 @@ const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 
 export async function getRecentVideos(maxResults: number = 6): Promise<YouTubeVideo[]> {
     if (!API_KEY || !CHANNEL_ID) {
-        console.warn('YouTube API credentials not configured');
+        console.warn('Credenciales de la API de YouTube no configuradas');
         return getMockVideos();
     }
 
@@ -33,52 +33,52 @@ export async function getRecentVideos(maxResults: number = 6): Promise<YouTubeVi
             url: `https://www.youtube.com/watch?v=${item.id.videoId}`,
         }));
     } catch (error) {
-        console.error('Error fetching YouTube videos:', error);
+        console.error('Error al obtener los videos de YouTube:', error);
         return getMockVideos();
     }
 }
 
-// Mock data for when API is not configured
+// Datos de ejemplo para cuando la API no está configurada
 function getMockVideos(): YouTubeVideo[] {
     return [
         {
             id: '1',
-            title: 'Epic Gaming Moment #1 - The Binding of Isaac',
+            title: 'Momento épico #1 - The Binding of Isaac',
             thumbnail: 'https://via.placeholder.com/480x360/1f2937/ef4444?text=Video+1',
             publishedAt: new Date().toISOString(),
             url: '#',
         },
         {
             id: '2',
-            title: 'Speedrun Attempt - New Personal Best!',
+            title: 'Intento de speedrun - ¡Nuevo récord personal!',
             thumbnail: 'https://via.placeholder.com/480x360/1f2937/a855f7?text=Video+2',
             publishedAt: new Date(Date.now() - 86400000).toISOString(),
             url: '#',
         },
         {
             id: '3',
-            title: 'Crazy Boss Fight - You Won\'t Believe This',
+            title: 'Pelea brutal contra el jefe - No te lo pierdas',
             thumbnail: 'https://via.placeholder.com/480x360/1f2937/10b981?text=Video+3',
             publishedAt: new Date(Date.now() - 172800000).toISOString(),
             url: '#',
         },
         {
             id: '4',
-            title: 'Best Moments Compilation',
+            title: 'Compilación de mejores momentos',
             thumbnail: 'https://via.placeholder.com/480x360/1f2937/ef4444?text=Video+4',
             publishedAt: new Date(Date.now() - 259200000).toISOString(),
             url: '#',
         },
         {
             id: '5',
-            title: 'New Game First Impressions',
+            title: 'Primeras impresiones del nuevo juego',
             thumbnail: 'https://via.placeholder.com/480x360/1f2937/a855f7?text=Video+5',
             publishedAt: new Date(Date.now() - 345600000).toISOString(),
             url: '#',
         },
         {
             id: '6',
-            title: 'Community Challenge Complete!',
+            title: '¡Reto comunitario completado!',
             thumbnail: 'https://via.placeholder.com/480x360/1f2937/10b981?text=Video+6',
             publishedAt: new Date(Date.now() - 432000000).toISOString(),
             url: '#',

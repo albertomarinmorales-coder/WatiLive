@@ -43,8 +43,10 @@ export default function Footer() {
                 <div className="w-px h-4 bg-gray-600/50"></div>
 
                 {/* Copyright */}
-                <div className="text-[10px] text-gray-500 font-medium tracking-wider uppercase">
-                    © {currentYear} WatiLive
+                <div className="text-[10px] text-gray-500 font-medium tracking-wider uppercase flex items-center gap-1">
+                    <span>© {currentYear} WatiLive</span>
+                    <span className="text-gray-600">|</span>
+                    <span>By Klica.Dev</span>
                 </div>
             </div>
         </motion.footer>
