@@ -66,7 +66,7 @@ export default function AboutSection() {
                     <motion.div
                         key={index}
                         className="relative aspect-square rounded-xl overflow-hidden border border-gray-800 shadow-lg hover:border-accent-purple transition-all"
-                        whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(131, 56, 236, 0.5)' }}
+                        whileHover={{ boxShadow: '0 0 20px rgba(131, 56, 236, 0.5)' }}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 + index * 0.1 }}
@@ -141,19 +141,36 @@ export default function AboutSection() {
                     {socialIcons.map((social, index) => (
                         <motion.div
                             key={social.label}
-                            className="flex items-center gap-2 bg-gray-900 px-4 py-3 rounded-lg cursor-pointer border border-gray-800 hover:border-accent-cyan transition-all"
+                            className="flex items-center gap-2 bg-gray-900 px-4 py-3 rounded-lg cursor-pointer border border-gray-800"
                             whileHover={{
                                 scale: 1.05,
                                 backgroundColor: social.color,
-                                color: '#ffffff',
-                                boxShadow: `0 0 15px ${social.color}`
+                                boxShadow: `0 0 15px ${social.color}`,
+                                transition: { duration: 0.15 }
                             }}
                             initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 1.3 + index * 0.1 }}
+                            animate={{
+                                opacity: 1,
+                                x: 0,
+                                transition: { duration: 0.5, delay: 1.3 + index * 0.1 }
+                            }}
+                            transition={{ duration: 0.15 }}
                         >
-                            <social.icon className="text-xl" />
-                            <span className="font-medium">{social.label}</span>
+                            <motion.div
+                                initial={{ color: '#9ca3af' }}
+                                whileHover={{ color: '#ffffff', transition: { duration: 0.15 } }}
+                                transition={{ duration: 0.15 }}
+                            >
+                                <social.icon className="text-xl" />
+                            </motion.div>
+                            <motion.span
+                                className="font-medium"
+                                initial={{ color: '#9ca3af' }}
+                                whileHover={{ color: '#ffffff', transition: { duration: 0.15 } }}
+                                transition={{ duration: 0.15 }}
+                            >
+                                {social.label}
+                            </motion.span>
                         </motion.div>
                     ))}
                 </div>
